@@ -1,0 +1,21 @@
+.login__component {
+    width: 35%;
+    padding: 20px;
+    margin-top: 5%;
+    margin-left: 33%;
+    margin-bottom: 15%;
+}
+.login_header {
+    font-size: 45px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.error-message {
+    color: #f35555;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #f35555;
+    border-radius: 5px;
+    text-transform: uppercase;
+}

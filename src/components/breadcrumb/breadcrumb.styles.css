@@ -1,0 +1,16 @@
+.breadcrumb__component {
+    display: flex;
+    align-items: center;
+    font-size: small;
+    font-weight: 400;
+    
+}
+
+.breadcrumb__component .css-i4bv87-MuiSvgIcon-root {
+    height: 20px;
+}
+
+.breadcrumb__component .breadcrumb-link {
+    color: black !important;
+    text-decoration: underline;
+}

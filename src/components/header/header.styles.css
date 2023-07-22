@@ -1,0 +1,20 @@
+.header__component .navbar {
+    background-color: #f35555 !important;
+}
+a {
+    color: #fff !important;
+}
+.header__component .dropdown-toggle {
+    &::after{
+        display: none;
+    }
+}
+.header__component .css-2s90m6-MuiAvatar-root {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+}
+.header__component .dropdown-menu {
+    background-color: #f35555;
+    margin-left: -100px;
+}

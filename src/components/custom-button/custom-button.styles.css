@@ -1,0 +1,9 @@
+.custom-button__component {
+    padding-top: 10px;
+}
+.btn-custom {
+    width: 100%;
+    color: #fff;
+    background-color: #f35555;
+    border-color: #f35555;
+}

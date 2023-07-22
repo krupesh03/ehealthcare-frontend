@@ -1,0 +1,16 @@
+.account-details__component .custom-button__component {
+    width: 20%;
+    margin: auto;
+}
+.account-details__component input[type=file] {
+    display: none;
+}
+.account-details__component .camera-icon-class {
+    position: absolute;
+    cursor: pointer;
+    margin-left: 0;
+    margin-top: -60px;
+}
+.account-details__component .css-i4bv87-MuiSvgIcon-root {
+    color: black;
+}

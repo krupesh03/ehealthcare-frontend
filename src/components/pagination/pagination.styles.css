@@ -1,0 +1,10 @@
+.pagination__component {
+    width: 25%;
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 14px;
+    float: right;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}

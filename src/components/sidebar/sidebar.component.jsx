@@ -29,7 +29,7 @@ const SideBar = () => {
                         <Link to='/dashboard' className='sidebar__icons'> <DashboardIcon />Dashboard </Link>
                     </li>
                     <li className='sidebar_bodylist'>
-                        <Link to='#' className='sidebar__icons'> <LocalHospitalIcon />Doctors </Link>
+                        <Link to='/doctors' className='sidebar__icons'> <LocalHospitalIcon />Doctors </Link>
                     </li>
                     <li className='sidebar_bodylist'>
                         <Link to='#' className='sidebar__icons'> <BloodtypeIcon /> Patients </Link>

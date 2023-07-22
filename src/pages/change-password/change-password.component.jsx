@@ -11,6 +11,7 @@ const ChangePassword = () => {
     const [ cuser ] = useContext(UserContext);
     const [ password, setPassword ] = useState(null);
     const [ msg, setMsg ] = useState(null);
+    const [ error, setError ] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,11 +29,13 @@ const ChangePassword = () => {
             if( res.data.status ) {
                 setMsg(res.data.message);
                 setPassword(null);
+                setError(false);
             }
         })
         .catch( err => {
             if( err.response.data.status === false ) {
                 setMsg(err.response.data.message);
+                setError(true);
             }
         })
     }
@@ -83,7 +86,7 @@ const ChangePassword = () => {
                     </div>
                 </div>
                 
-                <span className='success-msg'> { msg } </span>
+                <div className={ error === false ? 'success-message' : error === true ? 'error-message' : '' }> { msg } </div>
 
                 <CustomButton type="submit" className="btn btn-custom">SUBMIT</CustomButton>
             </form>

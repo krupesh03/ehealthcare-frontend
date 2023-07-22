@@ -1,0 +1,36 @@
+.add-doctors {
+    float: right;
+    columns: #fff;
+    background-color: #f35555;
+    height: 35px;
+    width: 100px;
+    padding: 6px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.listing-header {
+    width: 100%;
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgrey;
+    font-size: 12px;
+
+    .header-block {
+        text-transform: capitalize;
+        width: 11%;
+
+        &:last-child {
+        width: 8%;
+        }
+    }
+}
+
+.no--data {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    padding: 14px 0;
+}

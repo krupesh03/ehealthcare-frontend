@@ -1,0 +1,25 @@
+.user-list__component {
+    width: 100%;
+    display: flex;
+    min-height: 100px;
+    border-bottom: 1px solid darkgrey;
+    padding: 14px 0;
+    font-size: 12px;
+    align-items: center;
+
+    .avatar-name,
+    .email,
+    .mobile_number,
+    .gender,
+    .blood_group,
+    .qualification,
+    .doctor_category,
+    .address {
+        width: 11%;
+    }
+
+    .css-i4bv87-MuiSvgIcon-root {
+        color: #000000;
+        font-size: 22px;
+    }
+}

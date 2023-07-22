@@ -19,6 +19,7 @@ const AccountDetails = () => {
     const [ cuser, setcUser ] = useContext(UserContext);
     const [ user, setUser ] = useState(cuser);
     const [ msg, setMsg ] = useState(null);
+    const [ error, setError ] = useState(null);
 
     useEffect( () => {
         async function getPrefetch() {
@@ -35,7 +36,7 @@ const AccountDetails = () => {
             })
             .catch( err => {
                 if( err.response.status === 401 ) {
-                    console.log('thiiiis');
+                    //console.log('thiiiis');
                     //setcUser(null);
                     //navigate('/');
                 }
@@ -69,11 +70,13 @@ const AccountDetails = () => {
             if( res.data.status ) {
                 setcUser(user);
                 setMsg(res.data.message);
+                setError(false);
             }
         })
         .catch( err => {
             if( err.response.data.status === false ) {
                 setMsg(err.response.data.message);
+                setError(true);
             }
         });
     }
@@ -92,11 +95,13 @@ const AccountDetails = () => {
             if( res.data.status ) {
                 setUser({ ...user, profile_picture: res.data.data.filename });
                 setMsg(res.data.message);
+                setError(false);
             }
         })
         .catch( err => {
             if( err.response.data.status === false ) {
                 setMsg(err.response.data.message);
+                setError(true);
             }
         });
     }
@@ -124,8 +129,7 @@ const AccountDetails = () => {
                                 onChange={onFileChange} 
                                 name='profile_picture' 
                     />
-                    <label for="profile_picture" className="camera-icon-class">
-                        {/* <i className="fa fa-camera" aria-hidden="true" title="Change Picture"></i> */}
+                    <label htmlFor="profile_picture" className="camera-icon-class">
                         <CameraAltIcon />
                     </label>
                 </div>
@@ -216,7 +220,7 @@ const AccountDetails = () => {
                                 autoComplete='off'
                     />
                 </div>
-                <span className='success-msg'> { msg } </span>
+                <div className={ error === false ? 'success-message' : error === true ? 'error-message' : '' }> { msg } </div>
                 <CustomButton type="button" className="btn btn-custom" onClick={handleSubmit}>SUBMIT</CustomButton>
             </div> 
         </div>

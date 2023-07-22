@@ -13,3 +13,21 @@ body {
     padding: 10px;
     width: 80%;
 }
+
+.error-message {
+    color: #f35555;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #f35555;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.success-message {
+    color: #15a515;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #15a515;
+    border-radius: 5px;
+    text-transform: uppercase;
+}

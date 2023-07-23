@@ -60,6 +60,8 @@ const ChangePassword = () => {
                                     autoComplete='off'
                         />
                     </div>
+                </div>
+                <div className='row g-3'>
                     <div className="col-sm-6">
                         <FormInput className='form-control'
                                     type='password'

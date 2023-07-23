@@ -16,7 +16,7 @@ const SideBar = () => {
         <div className="sidebar__component">
             <div className="sidebar__header">
 
-                <Avatar src={cuser && cuser.profile_picture ? process.env.REACT_APP_SERVER_API_BASE_URL + cuser.profile_picture : ''}>{ cuser.first_name.substring(0, 1) }</Avatar>
+                <Avatar src={cuser && cuser.profile_picture ? process.env.REACT_APP_SERVER_API_BASE_URL + cuser.profile_picture : ''}>{ cuser.first_name.toUpperCase().substring(0, 1) }</Avatar>
 
                 <div className="sidebar__headerRight">
                     { `${cuser.first_name} ${cuser.last_name}` }

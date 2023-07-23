@@ -44,7 +44,7 @@ const Header = () => {
                             ( <ul className="navbar-nav">
                                 <li className="nav-item dropdown">
                                     <Link to="#" className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
-                                        <Avatar src={cuser && cuser.profile_picture ? process.env.REACT_APP_SERVER_API_BASE_URL + cuser.profile_picture : ''}>{ cuser.first_name.substring(0, 1) }</Avatar>
+                                        <Avatar src={cuser && cuser.profile_picture ? process.env.REACT_APP_SERVER_API_BASE_URL + cuser.profile_picture : ''}>{ cuser.first_name.toUpperCase().substring(0, 1) }</Avatar>
                                     </Link>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <li><Link className="dropdown-item" to="/account-details">Account Details</Link></li>

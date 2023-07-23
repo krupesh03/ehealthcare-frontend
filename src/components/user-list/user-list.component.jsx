@@ -64,8 +64,8 @@ const UserList = ({ userList, type, func }) => {
     return (
         <div className='user-list__component'>
             <span className='avatar-name'> 
-                <Avatar src={userList.profile_picture ? process.env.REACT_APP_SERVER_API_BASE_URL + userList.profile_picture : ''}>{ userList.first_name.substring(0, 1) }</Avatar>
-                {userList.first_name} {userList.last_name} 
+                <Avatar src={userList.profile_picture ? process.env.REACT_APP_SERVER_API_BASE_URL + userList.profile_picture : ''} sx={{ width: 30, height: 30 }} >{ userList.first_name.toUpperCase().substring(0, 1) }</Avatar>&nbsp;
+                <div className='name'>{userList.first_name} {userList.last_name}</div> 
             </span>
             <span className='email'> {userList.email} </span>
             <span className='mobile_number'> {userList.mobile_number} </span>

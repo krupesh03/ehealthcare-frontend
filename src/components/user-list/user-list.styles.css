@@ -7,15 +7,37 @@
     font-size: 12px;
     align-items: center;
 
-    .avatar-name,
-    .email,
-    .mobile_number,
+    .avatar-name {
+        width: 13%;
+        display: flex;
+        justify-content: revert;
+
+        .css-2s90m6-MuiAvatar-root {
+            font-size: 10px;
+        }
+        
+        .name {
+            margin-top: 5px;
+        }
+    }
+
+    .email {
+        width: 15%;
+    }
+
+    .mobile_number {
+        width: 11%;
+    }
+
     .gender,
-    .blood_group,
+    .blood_group {
+        width: 8%;
+    }
+
     .qualification,
     .doctor_category,
     .address {
-        width: 11%;
+        width: 13%;
     }
 
     .css-i4bv87-MuiSvgIcon-root {

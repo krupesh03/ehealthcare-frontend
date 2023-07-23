@@ -47,31 +47,31 @@ const Doctors = () => {
             </div>
 
             <div className='listing-header'>
-                <div className='header-block'>
+                <div className='header-block name'>
                     <span>Name</span>
                 </div>
-                <div className='header-block'>
+                <div className='header-block email'>
                     <span>Email</span>
                 </div>
-                <div className='header-block'>
+                <div className='header-block mobile_number'>
                     <span>Mob. Number</span>
                 </div>
-                <div className='header-block'>
+                <div className='header-block gender'>
                     <span>Gender</span>
                 </div>
-                <div className='header-block'>
+                <div className='header-block blood_group'>
                     <span>Blood Group</span>
                 </div>
-                <div className='header-block'>
+                <div className='header-block qualification'>
                     <span>Qualification</span>
                 </div>
-                <div className='header-block'>
-                    <span>Category</span>
+                <div className='header-block doctor_category'>
+                    <span>Doctor Category</span>
                 </div>
-                <div className='header-block'>
+                <div className='header-block address'>
                     <span>Address</span>
                 </div>
-                <div className='header-block'>
+                <div className='header-block action'>
                     <span>Action</span>
                 </div>
             </div>

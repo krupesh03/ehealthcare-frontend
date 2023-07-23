@@ -39,10 +39,10 @@ const Doctors = () => {
         <div className="doctors-listing__component">
             <BreadCrumb paths={breadcrumbPaths} />
 
-            <h2>Doctors</h2>
+            <h2>Doctors Listing</h2>
 
             <div className="add-doctors">
-                <Link to="#">+ Add Doctor</Link>
+                <Link to="/add-doctors">+ Add Doctor</Link>
             </div>
 
             <div className='listing-header'>

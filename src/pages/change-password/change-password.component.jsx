@@ -7,7 +7,7 @@ import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 
 const ChangePassword = () => {
-    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Change Password', url: '/change-password'}];
+    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Change Password', url: '#'}];
     const [ cuser ] = useContext(UserContext);
     const [ password, setPassword ] = useState(null);
     const [ msg, setMsg ] = useState(null);

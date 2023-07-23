@@ -9,6 +9,7 @@ import Dashboard from './pages/dashboard/dashboard.component';
 import AccountDetails from './pages/account-details/account-details.component';
 import ChangePassword from './pages/change-password/change-password.component';
 import Doctors from './pages/doctors/doctors.component';
+import AddUpdateDoctors from './pages/doctors/addupdate.component';
 import Footer from './components/footer/footer.component';
 import SideBar from './components/sidebar/sidebar.component';
 import UserContext from './context/user-context';
@@ -75,6 +76,18 @@ function App() {
                       element={
                         <UserContext.Provider value={[cuser, setcUser]}>
                           <Doctors />
+                        </UserContext.Provider>
+                      } />
+                <Route path='/add-doctors'
+                      element={
+                        <UserContext.Provider value={[cuser, setcUser]}>
+                          <AddUpdateDoctors />
+                        </UserContext.Provider>
+                      } />
+                <Route path='/update-doctor/:userId'
+                      element={
+                        <UserContext.Provider value={[cuser, setcUser]}>
+                          <AddUpdateDoctors />
                         </UserContext.Provider>
                       } />
               

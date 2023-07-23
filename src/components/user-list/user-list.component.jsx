@@ -17,9 +17,6 @@ const UserList = ({ userList, type }) => {
         var deleteDoctorApiEndpoint = 'deleteDoctor';
         var restoreDoctorApiEndpoint = 'restoreDoctor';
     }
-    const handleEdit = (e) => {
-        e.preventDefault();
-    }
 
     const handleDelete = (e) => {
 
@@ -80,7 +77,7 @@ const UserList = ({ userList, type }) => {
                 ?
                 (
                     <span className='action'>
-                        <Link to='#' onClick={ handleEdit } data-id={userList.id}>
+                        <Link to={`/update-doctor/${userList.id}`}>
                             <EditIcon sx={{ color: deepPurple[500] }} />
                         </Link>
                         <Link to='#' onClick={ handleDelete } data-id={userList.id}>

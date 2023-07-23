@@ -14,7 +14,7 @@ const BreadCrumb = ({ paths }) => {
                                 <HomeIcon /> 
                             : 
                                 <div className='breadcrumb-path'>
-                                    &gt; <Link className='breadcrumb-link' to={path.url}> {path.name} </Link>
+                                    &nbsp;&gt; <Link className='breadcrumb-link' to={path.url}> {path.name} </Link>
                                 </div>
                         } 
                     </div>

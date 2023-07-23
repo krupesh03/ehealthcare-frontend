@@ -5,7 +5,7 @@ import BreadCrumb from '../../components/breadcrumb/breadcrumb.component';
 
 const Dashboard = () => {
     const [ cuser ] = useContext(UserContext);
-    const breadcrumbPaths = [{ name: 'home', url: '' }, {name: 'Dashboard', url: '/dashboard'}];
+    const breadcrumbPaths = [{ name: 'home', url: '' }, {name: 'Dashboard', url: '#'}];
 
     return (
         <div className='dashboard__component'>

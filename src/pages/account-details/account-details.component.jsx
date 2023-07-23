@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 const AccountDetails = () => {
-    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Account Details', url: '/account-details'}];
+    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Account Details', url: '#'}];
     //const navigate = useNavigate;
     const [ GenderOptions, setGenderOptions ] = useState([]);
     const [ BloodgroupOptions, setBloodgroupOptions ] = useState([]);

@@ -66,7 +66,7 @@ const Doctors = () => {
                     <span>Qualification</span>
                 </div>
                 <div className='header-block'>
-                    <span>Doctor Category</span>
+                    <span>Category</span>
                 </div>
                 <div className='header-block'>
                     <span>Address</span>
@@ -80,7 +80,7 @@ const Doctors = () => {
                 doctors.rows 
                 ?
                     doctors.rows.map( (doctor) => (
-                        <UserList key={doctor.id} userList={doctor} type={2} />
+                        <UserList key={doctor.id} userList={doctor} type={2} func={getDoctors} />
                     ))
                 : 
                 (

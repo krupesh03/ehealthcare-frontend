@@ -8,9 +8,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
 import { deepOrange, deepPurple, blueGrey } from '@mui/material/colors';
+import constants from '../../constants/constants';
 
-
-const UserList = ({ userList, type }) => { 
+const UserList = ({ userList, type, func }) => { 
     const [ cuser ] = useContext(UserContext);
 
     if ( type === 2 ) {
@@ -30,6 +30,7 @@ const UserList = ({ userList, type }) => {
         .then( res => {
             if( res.data.status ) { 
                 alert(res.data.message);
+                func(constants.ROWS_PER_PAGES[0], 1);
             }
         })
         .catch( err => {
@@ -50,6 +51,7 @@ const UserList = ({ userList, type }) => {
         .then( res => {
             if( res.data.status ) { 
                 alert(res.data.message);
+                func(constants.ROWS_PER_PAGES[0], 1);
             }
         })
         .catch( err => {

@@ -1,16 +1,31 @@
-.breadcrumb__component {
-    display: flex;
-    align-items: center;
-    font-size: small;
-    font-weight: 400;
-    
+/* Style the list */
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: transparent;
 }
-
-.breadcrumb__component .css-i4bv87-MuiSvgIcon-root {
-    height: 20px;
+  
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 12px;
 }
-
-.breadcrumb__component .breadcrumb-link {
+  
+  /* Add a slash symbol (>) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: ">\00a0";
+}
+  
+  /* Add a color to all links inside the list */
+ul.breadcrumb li a {
     color: black !important;
+    text-decoration: none;
+}
+  
+  /* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #01447e;
     text-decoration: underline;
 }

@@ -7,7 +7,6 @@ const Pagination = ({ pages, func }) => {
     
     const [ perPage, setperPage ] = useState(constants.ROWS_PER_PAGES[0]);
     const [ active, setActive ] = useState(1);
-    console.log('active', active);
 
     const handleChange = (e) => {
         setperPage(e.target.value);

@@ -6,6 +6,7 @@ import UserContext from '../../context/user-context';
 import BreadCrumb from '../../components/breadcrumb/breadcrumb.component';
 import UserList from '../../components/user-list/user-list.component';
 import Pagination from "../../components/pagination/pagination.component";
+import constants from '../../constants/constants';
 
 const Doctors = () => {
     const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Doctors', url: '/doctors'}];
@@ -14,11 +15,11 @@ const Doctors = () => {
     const [ msg, setMsg ] = useState(null);
 
     useEffect( () => {
-        getDoctors();
+        getDoctors(constants.ROWS_PER_PAGES[0], 1);
     }, []);
 
-    const getDoctors = async () => {
-        await axios.get(`/user/getDoctors?per_page=5&page=1`, {
+    const getDoctors = async (perPage , page) => {
+        await axios.get(`/user/getDoctors?per_page=${perPage}&page=${page}`, {
             headers: {
                 'Authorization' : `Bearer ${cuser.access_token}`
             }
@@ -90,7 +91,7 @@ const Doctors = () => {
             {
                 doctors.rows
                 ?
-                    (<Pagination pages={doctors} />)
+                    (<Pagination pages={doctors} func={getDoctors} />)
                 :
                     ''
             }

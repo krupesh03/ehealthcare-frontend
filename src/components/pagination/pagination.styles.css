@@ -1,10 +1,44 @@
 .pagination__component {
-    width: 25%;
+    width: 100%;
     margin-top: 30px;
     margin-left: auto;
     font-size: 14px;
-    float: right;
     display: flex;
     justify-content: space-between;
     font-size: 14px;
+
+    .pagination {
+        background-color: #f35555;
+        border: 1px solid #f35555;
+        border-radius: 8px;
+    }
+
+    /* Pagination links */
+    .pagination a {
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+  
+    /* Style the active/current link */
+    .pagination a.active {
+        background-color: #fff;
+        color: #f35555 !important;
+    }
+  
+    /* Add a grey background color on mouse-over */
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+
+    .rows-per-page {
+        background-color: #f35555;
+        border: 1px solid #f35555;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .rows-per-page span {
+        text-transform: math-auto;
+        color: #fff;
+    }
 }

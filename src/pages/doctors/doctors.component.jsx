@@ -32,8 +32,7 @@ const Doctors = () => {
             }
         })
         .catch( err => {
-            console.log("ee", err);
-            if( err.response.data.status === false ) { console.log('her');
+            if( err.response.data.status === false ) {
                 setDoctors([]);
                 setMsg(err.response.data.message);
             }

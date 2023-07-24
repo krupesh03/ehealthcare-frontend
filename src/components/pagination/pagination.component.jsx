@@ -29,7 +29,7 @@ const Pagination = ({ pages, func }) => {
         <div className="pagination__component">
             <div className="rows-per-page">
                 <span>Rows per page</span>&nbsp;
-                <select className="rows-per-page-select" name="rows-per-page-select" onChange={handleChange} value={perPage}>
+                <select className="rows-per-page-select" id="rows-per-page-select" name="rows-per-page-select" onChange={handleChange} value={perPage}>
                     {
                         constants.ROWS_PER_PAGES.map( row => (
                             <option value={ row }>{ row }</option>

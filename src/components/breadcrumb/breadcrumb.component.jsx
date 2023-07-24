@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const BreadCrumb = ({ paths }) => {
     return (
         <div className='breadcrumb__component'>
-            <ul class="breadcrumb">
+            <ul className="breadcrumb">
                 {
                     paths.map( (path, key) => (
                         <li key={key}>

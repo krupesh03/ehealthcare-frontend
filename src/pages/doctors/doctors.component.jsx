@@ -7,19 +7,21 @@ import BreadCrumb from '../../components/breadcrumb/breadcrumb.component';
 import UserList from '../../components/user-list/user-list.component';
 import Pagination from "../../components/pagination/pagination.component";
 import constants from '../../constants/constants';
+import SearchForm from "../../components/search-form/search-form.component";
 
 const Doctors = () => {
     const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Doctors', url: '/doctors'}];
     const [ cuser ] = useContext(UserContext);
     const [ doctors, setDoctors ] = useState([]);
     const [ msg, setMsg ] = useState(null);
+    const [ searchQuery, setSearchQuery ] = useState('');
 
     useEffect( () => {
         getDoctors(constants.ROWS_PER_PAGES[0], 1);
     }, []);
 
     const getDoctors = async (perPage , page) => {
-        await axios.get(`/user/getDoctors?per_page=${perPage}&page=${page}`, {
+        await axios.get(`/user/getDoctors?per_page=${perPage}&page=${page}&search_query=${searchQuery}`, {
             headers: {
                 'Authorization' : `Bearer ${cuser.access_token}`
             }
@@ -30,10 +32,17 @@ const Doctors = () => {
             }
         })
         .catch( err => {
-            if( err.response.data.status === false ) {
+            console.log("ee", err);
+            if( err.response.data.status === false ) { console.log('her');
+                setDoctors([]);
                 setMsg(err.response.data.message);
             }
         });
+    }
+
+    const handleSearchChange = (e) => {
+        const { value } = e.target;
+        setSearchQuery(value);
     }
 
     return (
@@ -42,8 +51,14 @@ const Doctors = () => {
 
             <h2>Doctors Listing</h2>
 
-            <div className="add-doctors">
-                <Link to="/add-doctors">+ Add Doctor</Link>
+            <div className="doc-listing-header">
+                <SearchForm func={getDoctors}
+                            onChange={handleSearchChange}
+                            placeholder="Search by name, email or mobile number" />
+
+                <div className="add-doctors">
+                    <Link to="/add-doctors">+ Add Doctor</Link>
+                </div>
             </div>
 
             <div className='listing-header'>

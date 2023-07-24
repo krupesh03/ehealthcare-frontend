@@ -45,7 +45,7 @@ const Pagination = ({ pages, func }) => {
                     <Link to="#" 
                         onClick={handlePageChange} 
                         data-pageno={page.value}
-                        className={ active == page.value ? 'active' : '' }
+                        className={ Number(active) === Number(page.value) ? 'active' : '' }
                     >
                         { page.key }
                     </Link>

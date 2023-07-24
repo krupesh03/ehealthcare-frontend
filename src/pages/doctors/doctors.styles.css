@@ -1,5 +1,10 @@
-.add-doctors {
+.doc-listing-header {
+    display: flex;
+    width: 100%;
     float: right;
+}
+
+.add-doctors {
     columns: #fff;
     background-color: #f35555;
     height: 35px;

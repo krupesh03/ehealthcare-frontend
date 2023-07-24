@@ -41,4 +41,16 @@
         text-transform: math-auto;
         color: #fff;
     }
+
+    .showing-records {
+        background-color: #f35555;
+        border: 1px solid #f35555;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .showing-records span {
+        text-transform: math-auto;
+        color: #fff;
+    }
 }

@@ -37,7 +37,10 @@ const Pagination = ({ pages, func }) => {
                     }
                 </select>
             </div>
-            <div class="pagination">
+            <div className="showing-records">
+                <span>Showing 1 - 9 of 9</span>
+            </div>
+            <div className="pagination">
             {
                 totalPages
                 ?

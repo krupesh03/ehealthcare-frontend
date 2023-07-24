@@ -10,6 +10,7 @@ const Pagination = ({ pages, func }) => {
 
     const handleChange = (e) => {
         setperPage(e.target.value);
+        setActive(1);
         func(e.target.value, 1);
     }
 
@@ -25,6 +26,12 @@ const Pagination = ({ pages, func }) => {
         totalPages.push({ key: i, value: i});
     }
 
+    var initialCount = Number(active) > 1 ? ( ( Number(active) - 1 ) * Number(perPage) ) + 1 : 1;
+    var endCount = Number(initialCount) + Number(perPage) - 1 ;
+    if ( endCount > pages.count ) {
+        endCount = pages.count;
+    }
+
     return (
         <div className="pagination__component">
             <div className="rows-per-page">
@@ -38,7 +45,7 @@ const Pagination = ({ pages, func }) => {
                 </select>
             </div>
             <div className="showing-records">
-                <span>Showing 1 - 9 of 9</span>
+                <span>{`Showing ${initialCount} - ${endCount} of ${pages.count}`}</span>
             </div>
             <div className="pagination">
             {

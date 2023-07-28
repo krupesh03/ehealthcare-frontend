@@ -39,7 +39,7 @@ const Pagination = ({ pages, func }) => {
                 <select className="rows-per-page-select" id="rows-per-page-select" name="rows-per-page-select" onChange={handleChange} value={perPage}>
                     {
                         constants.ROWS_PER_PAGES.map( row => (
-                            <option value={ row }>{ row }</option>
+                            <option value={ row } key={row}>{ row }</option>
                         ) )
                     }
                 </select>

@@ -32,7 +32,7 @@ const SideBar = () => {
                         <Link to='/doctors' className='sidebar__icons'> <LocalHospitalIcon />Doctors </Link>
                     </li>
                     <li className='sidebar_bodylist'>
-                        <Link to='#' className='sidebar__icons'> <BloodtypeIcon /> Patients </Link>
+                        <Link to='/patients' className='sidebar__icons'> <BloodtypeIcon /> Patients </Link>
                     </li>
                     <li className='sidebar_bodylist'>
                         <Link to='#' className='sidebar__icons'> <SettingsIcon /> Settings </Link>

@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.listing-header {
+.doctors-listing__component .listing-header {
     width: 100%;
     padding: 14px 0;
     display: flex;

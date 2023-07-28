@@ -1,4 +1,4 @@
-.user-list__component {
+.user-list-doctor__component {
     width: 100%;
     display: flex;
     min-height: 70px;
@@ -38,6 +38,52 @@
     .doctor_category,
     .address {
         width: 13%;
+    }
+
+    .css-i4bv87-MuiSvgIcon-root {
+        color: #000000;
+        font-size: 22px;
+    }
+}
+
+.user-list-patient__component {
+    width: 100%;
+    display: flex;
+    min-height: 70px;
+    border-bottom: 1px solid darkgrey;
+    padding: 14px 0;
+    font-size: 12px;
+    align-items: center;
+
+    .avatar-name {
+        width: 20%;
+        display: flex;
+        justify-content: revert;
+
+        .css-2s90m6-MuiAvatar-root {
+            font-size: 10px;
+        }
+        
+        .name {
+            margin-top: 5px;
+        }
+    }
+
+    .email {
+        width: 20%;
+    }
+
+    .mobile_number {
+        width: 12%;
+    }
+
+    .gender,
+    .blood_group {
+        width: 10%;
+    }
+
+    .address {
+        width: 18%;
     }
 
     .css-i4bv87-MuiSvgIcon-root {

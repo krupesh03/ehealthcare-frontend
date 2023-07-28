@@ -13,16 +13,21 @@ import constants from '../../constants/constants';
 const UserList = ({ userList, type, func }) => { 
     const [ cuser ] = useContext(UserContext);
 
-    if ( type === 2 ) {
-        var deleteDoctorApiEndpoint = 'deleteDoctor';
-        var restoreDoctorApiEndpoint = 'restoreDoctor';
+    if ( type === constants.userType.DOCTOR ) {
+        var deleteApiEndpoint = 'deleteDoctor';
+        var restoreApiEndpoint = 'restoreDoctor';
+        var typeName = 'doctor';
+    } else if ( type === constants.userType.PATIENT ) {
+        var deleteApiEndpoint = 'patient';
+        var restoreApiEndpoint = 'rpatient';
+        var typeName = 'patient';
     }
 
     const handleDelete = (e) => {
 
         e.preventDefault();
         const id = e.currentTarget.getAttribute('data-id');
-        axios.delete(`user/${deleteDoctorApiEndpoint}/${id}`, {
+        axios.delete(`user/${deleteApiEndpoint}/${id}`, {
             headers: {
                 'Authorization' : `Bearer ${cuser.access_token}`
             }
@@ -43,7 +48,7 @@ const UserList = ({ userList, type, func }) => {
     const handleRestore = (e) => {
         e.preventDefault();
         const id = e.currentTarget.getAttribute('data-id');
-        axios.put(`user/${restoreDoctorApiEndpoint}/${id}`, {}, {
+        axios.put(`user/${restoreApiEndpoint}/${id}`, {}, {
             headers: {
                 'Authorization' : `Bearer ${cuser.access_token}`
             }
@@ -62,7 +67,7 @@ const UserList = ({ userList, type, func }) => {
     }
 
     return (
-        <div className='user-list__component'>
+        <div className={`user-list-${typeName}__component`}>
             <span className='avatar-name'> 
                 <Avatar src={userList.profile_picture ? process.env.REACT_APP_SERVER_API_BASE_URL + userList.profile_picture : ''} sx={{ width: 30, height: 30 }} >{ userList.first_name.toUpperCase().substring(0, 1) }</Avatar>&nbsp;
                 <div className='name'>{userList.first_name} {userList.last_name}</div> 
@@ -71,8 +76,24 @@ const UserList = ({ userList, type, func }) => {
             <span className='mobile_number'> {userList.mobile_number} </span>
             <span className='gender'> {userList.gender} </span>
             <span className='blood_group'> {userList.blood_group} </span>
-            <span className='qualification'> {userList.qualificationDetails.value} </span>
-            <span className='doctor_category'> {userList.doctorCategoryDetails.value} </span>
+            {
+                type === constants.userType.DOCTOR 
+                ?
+                (
+                    <span className='qualification'> {userList.qualificationDetails.value} </span>
+                )
+                :
+                ''
+            }
+            {
+                type === constants.userType.DOCTOR
+                ?
+                (
+                    <span className='doctor_category'> {userList.doctorCategoryDetails.value} </span>
+                )
+                :
+                ''
+            }
             <span className='address'> {userList.address} </span>
             {
                 !userList.deletedAt

@@ -14,6 +14,7 @@ import Footer from './components/footer/footer.component';
 import SideBar from './components/sidebar/sidebar.component';
 import UserContext from './context/user-context';
 import { useState, useEffect } from 'react';
+import Patients from './pages/patients/patients.component';
 
 function App() {
 
@@ -88,6 +89,12 @@ function App() {
                       element={
                         <UserContext.Provider value={[cuser, setcUser]}>
                           <AddUpdateDoctors />
+                        </UserContext.Provider>
+                      } />
+                <Route path='/patients'
+                      element={
+                        <UserContext.Provider value={[cuser, setcUser]}>
+                          <Patients />
                         </UserContext.Provider>
                       } />
               

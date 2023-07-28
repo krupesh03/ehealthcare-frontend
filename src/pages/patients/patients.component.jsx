@@ -1,39 +1,39 @@
-import { React, useState, useEffect, useContext } from "react";
+import { React, useState, useEffect, useContext } from 'react';
+import './patients.styles.css';
 import { Link } from 'react-router-dom';
-import './doctors.styles.css';
 import axios from '../../axios/axios';
 import UserContext from '../../context/user-context';
 import BreadCrumb from '../../components/breadcrumb/breadcrumb.component';
+import constants from '../../constants/constants';
 import UserList from '../../components/user-list/user-list.component';
 import Pagination from "../../components/pagination/pagination.component";
-import constants from '../../constants/constants';
 import SearchForm from "../../components/search-form/search-form.component";
 
-const Doctors = () => {
-    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Doctors', url: '/doctors'}];
+const Patients = () => {
+    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Patients', url: '/patients'}];
     const [ cuser ] = useContext(UserContext);
-    const [ doctors, setDoctors ] = useState([]);
+    const [ patients, setPatients ] = useState([]);
     const [ msg, setMsg ] = useState(null);
     const [ searchQuery, setSearchQuery ] = useState('');
 
     useEffect( () => {
-        getDoctors(constants.ROWS_PER_PAGES[0], 1);
+        getPatients(constants.ROWS_PER_PAGES[0], 1);
     }, []);
 
-    const getDoctors = async (perPage , page) => {
-        await axios.get(`/user/getDoctors?per_page=${perPage}&page=${page}&search_query=${searchQuery}`, {
+    const getPatients =  async (perPage, page) => {
+        await axios.get(`user/patient?per_page=${perPage}&page=${page}&search_query=${searchQuery}`, {
             headers: {
                 'Authorization' : `Bearer ${cuser.access_token}`
             }
         })
         .then( res => {
             if( res.data.status ) {
-                setDoctors(res.data.data);
+                setPatients(res.data.data);
             }
         })
         .catch( err => {
             if( err.response.data.status === false ) {
-                setDoctors([]);
+                setPatients([]);
                 setMsg(err.response.data.message);
             }
         });
@@ -45,18 +45,18 @@ const Doctors = () => {
     }
 
     return (
-        <div className="doctors-listing__component">
+        <div className='patients-listing__component'>
             <BreadCrumb paths={breadcrumbPaths} />
 
-            <h2>Doctors Listing</h2>
+            <h2>Patients Listing</h2>
 
-            <div className="doc-listing-header">
-                <SearchForm func={getDoctors}
+            <div className="patient-listing-header">
+                <SearchForm func={getPatients}
                             onChange={handleSearchChange}
                             placeholder="Search by name, email or mobile number" />
 
-                <div className="add-doctors">
-                    <Link to="/add-doctors">+ Add Doctor</Link>
+                <div className="add-patients">
+                    <Link to="/add-patients">+ Add Patient</Link>
                 </div>
             </div>
 
@@ -76,12 +76,6 @@ const Doctors = () => {
                 <div className='header-block blood_group'>
                     <span>Blood Group</span>
                 </div>
-                <div className='header-block qualification'>
-                    <span>Qualification</span>
-                </div>
-                <div className='header-block doctor_category'>
-                    <span>Doctor Category</span>
-                </div>
                 <div className='header-block address'>
                     <span>Address</span>
                 </div>
@@ -91,27 +85,27 @@ const Doctors = () => {
             </div>
 
             {
-                doctors.rows 
+                patients.rows
                 ?
-                    doctors.rows.map( (doctor) => (
-                        <UserList key={doctor.id} userList={doctor} type={constants.userType.DOCTOR} func={getDoctors} />
+                    patients.rows.map( (patient) => (
+                        <UserList key={patient.id} userList={patient} type={constants.userType.PATIENT} func={getPatients} />
                     ))
-                : 
+                :
                 (
                     <div className="no--data"> { msg } </div>
                 )
             }
 
             {
-                doctors.rows
+                patients.rows
                 ?
-                    (<Pagination pages={doctors} func={getDoctors} />)
+                    (<Pagination pages={patients} func={getPatients} />)
                 :
                     ''
             }
- 
+
         </div>
     );
 }
 
-export default Doctors;
+export default Patients;

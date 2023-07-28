@@ -1,0 +1,60 @@
+.patients-listing__component .listing-header {
+    width: 100%;
+    padding: 14px 0;
+    display: flex;
+    border-bottom: 1px solid darkgrey;
+    font-size: 12px;
+    font-weight: bold;
+
+    .header-block {
+        text-transform: capitalize;
+
+        &.name {
+            width: 20%;
+        }
+
+        &.email {
+            width: 20%;
+        }
+    
+        &.mobile_number {
+            width: 12%;
+        }
+    
+        &.gender,
+        &.blood_group {
+            width: 10%;
+        }
+    
+        &.address {
+            width: 18%;
+        }
+
+        &:last-child {
+            width: 10%;
+        }
+    }
+}
+
+.patient-listing-header {
+    display: flex;
+    float: right;
+}
+
+.add-patients {
+    columns: #fff;
+    background-color: #f35555;
+    height: 35px;
+    width: 100px;
+    padding: 6px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.no--data {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    padding: 14px 0;
+}

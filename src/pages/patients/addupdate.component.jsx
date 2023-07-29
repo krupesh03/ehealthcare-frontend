@@ -7,10 +7,12 @@ import TextareaField from '../../components/textarea-field/textarea-field.compon
 import CustomButton from '../../components/custom-button/custom-button.component';
 import axios from '../../axios/axios';
 import UserContext from '../../context/user-context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AddUpdatePatients = () => {
-    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Patients', url: '/patients'}, {name: 'Add Patient', url: '#'} ];
+    const { userId } = useParams();
+    const Title = userId === undefined ? 'Add Patient' : 'Update Patient';
+    const breadcrumbPaths = [ { name: 'home', url: '' }, {name: 'Patients', url: '/patients'}, {name: Title, url: '#'} ];
     const [ user, setUser ] = useState([]);
     const [ genderOptions, setGenderOptions ] = useState([]);
     const [ cuser ] = useContext(UserContext);
@@ -26,7 +28,11 @@ const AddUpdatePatients = () => {
 
     useEffect( () => {
         getPrefetch();
-    }, []);
+
+        if( userId !== undefined ) {
+            getPatientDetails();
+        }
+    }, [userId]);
 
     const getPrefetch = async () => {
         await axios.get(`user/prefetch`, {
@@ -70,13 +76,53 @@ const AddUpdatePatients = () => {
         })
     }
 
+    const getPatientDetails = async () => {
+        await axios.get(`user/patient/${userId}`, {
+            headers: {
+                'Authorization' : `Bearer ${cuser.access_token}`
+            }
+        })
+        .then( (res) => {
+            if( res.data.status ) {
+                setUser(res.data.data);
+            }
+        })
+        .catch( (err) => {
+            console.log(err);
+        })
+    }
+
+    const handleEdit = (e) => {
+        e.preventDefault();
+        axios.put(`user/patient/${userId}`, user, {
+            headers : {
+                'Authorization' : `Bearer ${cuser.access_token}`
+            }
+        })
+        .then((res) => {
+            if( res.data.status ) {
+                setMsg(res.data.message);
+                setError(false);
+                setTimeout( () => {
+                    navigate('/patients');
+                }, 2000);
+            }
+        })
+        .catch( (err) => {
+            if( err.response.data.status === false ) {
+                setMsg(err.response.data.message);
+                setError(true);
+            }
+        })
+    }
+
     return (
         <div className='app-update-patients__component'>
             <BreadCrumb paths={breadcrumbPaths} />
             
-            <h2>Add Patient</h2>
+            <h2>{Title}</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={ userId === undefined ? handleSubmit : handleEdit }>
                 <div className='row g-3'>
                     <div className='col-sm-6'>
                         <FormInput className='form-control'
@@ -114,30 +160,46 @@ const AddUpdatePatients = () => {
                                 autoComplete='off'
                         />
                     </div>
-                    <div className='col-sm-6'>
-                        <FormInput className='form-control'
-                                    type='password'
-                                    label='Password'
-                                    id='password'
-                                    value={user ? user.password : ''}
-                                    handleChange={handleChange}
-                                    name='password'
-                                    placeholder='Enter password'
-                                    autoComplete='off'
-                        />
-                    </div>
-                    <div className='col-sm-6'>
-                        <FormInput className='form-control'
-                                    type='password'
-                                    label='Confirm password'
-                                    id='cpassword'
-                                    value={user ? user.cpassword : ''}
-                                    handleChange={handleChange}
-                                    name='cpassword'
-                                    placeholder='Enter confirm password'
-                                    autoComplete='off'
-                        />
-                    </div>
+                    {
+                        userId === undefined
+                        ?
+                        (
+                            <div className='col-sm-6'>
+                                <FormInput className='form-control'
+                                            type='password'
+                                            label='Password'
+                                            id='password'
+                                            value={user ? user.password : ''}
+                                            handleChange={handleChange}
+                                            name='password'
+                                            placeholder='Enter password'
+                                            autoComplete='off'
+                                />
+                            </div>
+                        )
+                        :
+                        ''
+                    }
+                    {
+                        userId === undefined
+                        ?
+                        (
+                            <div className='col-sm-6'>
+                                <FormInput className='form-control'
+                                            type='password'
+                                            label='Confirm password'
+                                            id='cpassword'
+                                            value={user ? user.cpassword : ''}
+                                            handleChange={handleChange}
+                                            name='cpassword'
+                                            placeholder='Enter confirm password'
+                                            autoComplete='off'
+                                />
+                            </div>
+                        )
+                        :
+                        ''
+                    }
                     <div className='col-sm-6'>
                         <FormInput className='form-control'
                                 type='text'

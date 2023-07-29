@@ -100,7 +100,7 @@ const UserList = ({ userList, type, func }) => {
                 ?
                 (
                     <span className='action'>
-                        <Link to={`/update-doctor/${userList.id}`}>
+                        <Link to={`/update-${typeName}/${userList.id}`}>
                             <EditIcon sx={{ color: deepPurple[500] }} />
                         </Link>
                         <Link to='#' onClick={ handleDelete } data-id={userList.id}>

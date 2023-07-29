@@ -104,6 +104,12 @@ function App() {
                           <AddUpdatePatients />
                         </UserContext.Provider>
                       } />
+                <Route path='/update-patient/:userId'
+                      element={
+                        <UserContext.Provider value={[cuser, setcUser]}>
+                          <AddUpdatePatients />
+                        </UserContext.Provider>
+                      } />
               
             </Routes>
           </div>

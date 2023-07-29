@@ -10,7 +10,7 @@ const Dashboard = () => {
     return (
         <div className='dashboard__component'>
             <BreadCrumb paths={breadcrumbPaths} />
-            <p> Welcome { `${cuser.first_name} ${cuser.last_name}` } </p>
+            <h2> Welcome { `${cuser.first_name} ${cuser.last_name}` } </h2>
         </div>
     );
 }

@@ -58,3 +58,8 @@
     font-size: 12px;
     padding: 14px 0;
 }
+
+.app-update-patients__component .custom-button__component {
+    width: 20%;
+    margin: auto;
+}

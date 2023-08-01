@@ -87,6 +87,7 @@ const AddUpdatePatients = () => {
         .then( (res) => {
             if( res.data.status ) {
                 setUser(res.data.data);
+                setStartDate(new Date(res.data.data.patient_admissions.admission_date));
             }
         })
         .catch( (err) => {
@@ -260,7 +261,7 @@ const AddUpdatePatients = () => {
                     <div className='col-sm-4'>
                         <DateTimePicker className='form-control'
                                 label='Admission Date'
-                                selected={user && user.patient_admissions ? new Date(user.patient_admissions.admission_date) : startDate}
+                                selected={startDate}
                                 onSelect={handleDateSelect}
                                 onChange={handleDateChange}
                                 placeholderText="Click to select a date"

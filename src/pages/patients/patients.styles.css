@@ -14,15 +14,19 @@
         }
 
         &.email {
-            width: 20%;
+            width: 16%;
         }
     
         &.mobile_number {
-            width: 12%;
+            width: 10%;
         }
     
         &.gender,
         &.blood_group {
+            width: 8%;
+        }
+
+        &.admission_date {
             width: 10%;
         }
     

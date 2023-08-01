@@ -76,6 +76,9 @@ const Patients = () => {
                 <div className='header-block blood_group'>
                     <span>Blood Group</span>
                 </div>
+                <div className='header-block admission_date'>
+                    <span>Admission Date</span>
+                </div>
                 <div className='header-block address'>
                     <span>Address</span>
                 </div>

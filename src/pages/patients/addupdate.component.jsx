@@ -8,6 +8,7 @@ import CustomButton from '../../components/custom-button/custom-button.component
 import axios from '../../axios/axios';
 import UserContext from '../../context/user-context';
 import { useNavigate, useParams } from 'react-router-dom';
+import DateTimePicker from '../../components/datetime-picker/datetime-picker.component';
 
 const AddUpdatePatients = () => {
     const { userId } = useParams();
@@ -20,6 +21,7 @@ const AddUpdatePatients = () => {
     const [ msg, setMsg ] = useState(null);
     const [ error, setError ] = useState(null);
     const navigate = useNavigate();
+    const [startDate, setStartDate] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -114,6 +116,29 @@ const AddUpdatePatients = () => {
                 setError(true);
             }
         })
+    }
+
+    const handleDateSelect = (date) => {
+        //console.log(e.target.value);
+    }
+
+    const handleDateChange = (date) => {
+
+        setStartDate(date);
+        var newDate = '';
+        if( date ) {
+            var day = date.getDate();
+            if( day < 10 ) {
+                day = '0'+day;
+            }
+            var month = date.getMonth() + 1;
+            if( month < 10 ) {
+                month = '0'+month;
+            }
+            var year = date.getFullYear();
+            newDate = year + '-' + month + '-' + day;
+        }
+        setUser({...user, admission_date: newDate});
     }
 
     return (
@@ -212,7 +237,7 @@ const AddUpdatePatients = () => {
                                 autoComplete='off'
                         />
                     </div>
-                    <div className='col-sm-6'>
+                    <div className='col-sm-4'>
                         <SelectField className='form-control'
                                 id='gender'
                                 label='Gender'
@@ -222,7 +247,7 @@ const AddUpdatePatients = () => {
                                 options={genderOptions}
                         />
                     </div>
-                    <div className='col-sm-6'>
+                    <div className='col-sm-4'>
                         <SelectField className='form-control'
                                 id='blood_group'
                                 label='Blood Group'
@@ -230,6 +255,15 @@ const AddUpdatePatients = () => {
                                 onChange={handleChange}
                                 name='blood_group'
                                 options={BloodgroupOptions}
+                        />
+                    </div>
+                    <div className='col-sm-4'>
+                        <DateTimePicker className='form-control'
+                                label='Admission Date'
+                                selected={user && user.patient_admissions ? new Date(user.patient_admissions.admission_date) : startDate}
+                                onSelect={handleDateSelect}
+                                onChange={handleDateChange}
+                                placeholderText="Click to select a date"
                         />
                     </div>
                     <div className='col-sm-12'>

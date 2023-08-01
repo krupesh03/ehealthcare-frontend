@@ -94,6 +94,15 @@ const UserList = ({ userList, type, func }) => {
                 :
                 ''
             }
+            {
+                type === constants.userType.PATIENT
+                ?
+                (
+                    <span className='admission_date'> {userList.patient_admissions ? userList.patient_admissions.admission_date : ''} </span>
+                )
+                :
+                ''
+            }
             <span className='address'> {userList.address} </span>
             {
                 !userList.deletedAt

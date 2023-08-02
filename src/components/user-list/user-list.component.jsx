@@ -83,7 +83,7 @@ const UserList = ({ userList, type, func }) => {
                 :
                 ''
             }
-            <span className='gender'> {userList.gender} </span>
+            <span className='gender'> {userList.gender === 'M' ? 'Male' : userList.gender === 'F' ? 'Female' : 'Others' } </span>
             <span className='blood_group'> {userList.blood_group} </span>
             {
                 type === constants.userType.DOCTOR 

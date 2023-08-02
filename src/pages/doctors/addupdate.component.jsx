@@ -8,6 +8,7 @@ import FormInput from '../../components/form-input/form-input.component';
 import SelectField from '../../components/select-field/select-field.component';
 import TextareaField from '../../components/textarea-field/textarea-field.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
+import DateTimePicker from '../../components/datetime-picker/datetime-picker.component';
 
 const AddUpdateDoctors = () => {
     const { userId } = useParams();
@@ -22,6 +23,7 @@ const AddUpdateDoctors = () => {
     const [ BloodgroupOptions, setBloodgroupOptions ] = useState([]);
     const [ QualificationOptions, setQualificationOptions ] = useState([]);
     const [ DocCategoryOptions, setDocCategoryOptions ] = useState([]);
+    const [startDate, setStartDate] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,6 +89,9 @@ const AddUpdateDoctors = () => {
         .then( res => {
             if( res.data.status ) {
                 setUser(res.data.data);
+                if( res.data.data.birth_date ) {
+                    setStartDate(new Date(res.data.data.birth_date));
+                }
             }
         })
         .catch( err => {
@@ -116,6 +121,20 @@ const AddUpdateDoctors = () => {
                 setError(true);
             }
         })
+    }
+    
+    const handleDateSelect = (date) => {
+    
+    }
+
+    const handleDateChange = (date) => {
+        setStartDate(date);
+        if( date ) {
+            var age = new Date().getFullYear() - new Date(date).getFullYear();
+        } else {
+            var age = '';
+        }
+        setUser({...user, age: age, birth_date: date});
     }
 
     return (
@@ -205,6 +224,30 @@ const AddUpdateDoctors = () => {
                                 name='mobile_number'
                                 placeholder='Enter mobile number'
                                 autoComplete='off'
+                        />
+                    </div>
+                    <div className='col-sm-6'>
+                        <DateTimePicker className='form-control'
+                                label='Date Of Birth'
+                                selected={startDate}
+                                onSelect={handleDateSelect}
+                                onChange={handleDateChange}
+                                placeholderText="Click to select a date"
+                                isClearable
+                                maxDate={new Date()}
+                        />
+                    </div>
+                    <div className='col-sm-6'>
+                        <FormInput className='form-control'
+                                type='text'
+                                id='age'
+                                label='Age'
+                                value={user ? user.age : ''}
+                                onChange={handleChange}
+                                name='age'
+                                placeholder='Select date of birth'
+                                autoComplete='off'
+                                readOnly
                         />
                     </div>
                     <div className='col-sm-6'>

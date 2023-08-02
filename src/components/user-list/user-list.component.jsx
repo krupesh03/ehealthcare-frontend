@@ -74,6 +74,15 @@ const UserList = ({ userList, type, func }) => {
             </span>
             <span className='email'> {userList.email} </span>
             <span className='mobile_number'> {userList.mobile_number} </span>
+            {
+                type === constants.userType.PATIENT
+                ?
+                (
+                    <span className='date_of_birth'> {userList.birth_date} </span>
+                )
+                :
+                ''
+            }
             <span className='gender'> {userList.gender} </span>
             <span className='blood_group'> {userList.blood_group} </span>
             {

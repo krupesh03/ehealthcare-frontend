@@ -23,7 +23,7 @@ const AddUpdateDoctors = () => {
     const [ BloodgroupOptions, setBloodgroupOptions ] = useState([]);
     const [ QualificationOptions, setQualificationOptions ] = useState([]);
     const [ DocCategoryOptions, setDocCategoryOptions ] = useState([]);
-    const [startDate, setStartDate] = useState(null);
+    const [ startDate, setStartDate ] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -121,10 +121,6 @@ const AddUpdateDoctors = () => {
                 setError(true);
             }
         })
-    }
-    
-    const handleDateSelect = (date) => {
-    
     }
 
     const handleDateChange = (date) => {
@@ -230,8 +226,7 @@ const AddUpdateDoctors = () => {
                         <DateTimePicker className='form-control'
                                 label='Date Of Birth'
                                 selected={startDate}
-                                onSelect={handleDateSelect}
-                                onChange={handleDateChange}
+                                onChangeFunc={handleDateChange}
                                 placeholderText="Click to select a date"
                                 isClearable
                                 maxDate={new Date()}

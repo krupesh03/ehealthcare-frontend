@@ -21,7 +21,8 @@ const AddUpdatePatients = () => {
     const [ msg, setMsg ] = useState(null);
     const [ error, setError ] = useState(null);
     const navigate = useNavigate();
-    const [startDate, setStartDate] = useState(null);
+    const [ startDate, setStartDate ] = useState(null);
+    const [ startDobDate, setStartDobDate ] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -86,8 +87,11 @@ const AddUpdatePatients = () => {
         })
         .then( (res) => {
             if( res.data.status ) {
-                setUser(res.data.data);
+                setUser({...res.data.data, admission_date: res.data.data.patient_admissions.admission_date});
                 setStartDate(new Date(res.data.data.patient_admissions.admission_date));
+                if( res.data.data.birth_date ) {
+                    setStartDobDate(new Date(res.data.data.birth_date));
+                } 
             }
         })
         .catch( (err) => {
@@ -119,10 +123,6 @@ const AddUpdatePatients = () => {
         })
     }
 
-    const handleDateSelect = (date) => {
-        //console.log(e.target.value);
-    }
-
     const handleDateChange = (date) => {
 
         setStartDate(date);
@@ -140,6 +140,16 @@ const AddUpdatePatients = () => {
             newDate = year + '-' + month + '-' + day;
         }
         setUser({...user, admission_date: newDate});
+    }
+
+    const handleDateOfBirthChange = (date) => {
+        setStartDobDate(date);
+        if( date ) {
+            var age = new Date().getFullYear() - new Date(date).getFullYear();
+        } else {
+            var age = '';
+        }
+        setUser({...user, age: age, birth_date: date});
     }
 
     return (
@@ -238,6 +248,29 @@ const AddUpdatePatients = () => {
                                 autoComplete='off'
                         />
                     </div>
+                    <div className='col-sm-6'>
+                        <DateTimePicker className='form-control'
+                                label='Date Of Birth'
+                                selected={startDobDate}
+                                onChangeFunc={handleDateOfBirthChange}
+                                placeholderText="Click to select a date"
+                                isClearable
+                                maxDate={new Date()}
+                        />
+                    </div>
+                    <div className='col-sm-6'>
+                        <FormInput className='form-control'
+                                type='text'
+                                id='age'
+                                label='Age'
+                                value={user ? user.age : ''}
+                                onChange={handleChange}
+                                name='age'
+                                placeholder='Select date of birth'
+                                autoComplete='off'
+                                readOnly
+                        />
+                    </div>
                     <div className='col-sm-4'>
                         <SelectField className='form-control'
                                 id='gender'
@@ -262,9 +295,10 @@ const AddUpdatePatients = () => {
                         <DateTimePicker className='form-control'
                                 label='Admission Date'
                                 selected={startDate}
-                                onSelect={handleDateSelect}
-                                onChange={handleDateChange}
+                                onChangeFunc={handleDateChange}
                                 placeholderText="Click to select a date"
+                                isClearable
+                                maxDate={new Date()}
                         />
                     </div>
                     <div className='col-sm-12'>

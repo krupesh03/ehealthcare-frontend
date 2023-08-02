@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './datetime-picker.styles.css';
 
-const DateTimePicker = ({label, selected, handleDateSelect, handleDateChange, ...otherFormProps}) => {
+const DateTimePicker = ({label, selected, onChangeFunc, ...otherFormProps}) => {
     
     return (
         <div className="datetime-picker__component">
@@ -11,8 +11,7 @@ const DateTimePicker = ({label, selected, handleDateSelect, handleDateChange, ..
             <DatePicker
                 dateFormat="yyyy-MM-dd"
                 selected={selected}
-                onSelect={handleDateSelect} //when day is clicked
-                onChange={handleDateChange} //only when value has changed
+                onChange={onChangeFunc} //only when value has changed
                 {...otherFormProps}
             />
         </div>

@@ -70,6 +70,9 @@ const Patients = () => {
                 <div className='header-block mobile_number'>
                     <span>Mob. Number</span>
                 </div>
+                <div className='header-block date_of_birth'>
+                    <span>Date Of Birth</span>
+                </div>
                 <div className='header-block gender'>
                     <span>Gender</span>
                 </div>

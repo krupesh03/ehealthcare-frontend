@@ -11,6 +11,7 @@ const DateTimePicker = ({label, selected, onChangeFunc, ...otherFormProps}) => {
             <DatePicker
                 dateFormat="yyyy-MM-dd"
                 selected={selected}
+                isClearable
                 onChange={onChangeFunc} //only when value has changed
                 {...otherFormProps}
             />

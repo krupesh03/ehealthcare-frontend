@@ -254,7 +254,6 @@ const AddUpdatePatients = () => {
                                 selected={startDobDate}
                                 onChangeFunc={handleDateOfBirthChange}
                                 placeholderText="Click to select a date"
-                                isClearable
                                 maxDate={new Date()}
                         />
                     </div>
@@ -297,7 +296,6 @@ const AddUpdatePatients = () => {
                                 selected={startDate}
                                 onChangeFunc={handleDateChange}
                                 placeholderText="Click to select a date"
-                                isClearable
                                 maxDate={new Date()}
                         />
                     </div>

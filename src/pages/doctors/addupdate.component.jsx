@@ -228,7 +228,6 @@ const AddUpdateDoctors = () => {
                                 selected={startDate}
                                 onChangeFunc={handleDateChange}
                                 placeholderText="Click to select a date"
-                                isClearable
                                 maxDate={new Date()}
                         />
                     </div>

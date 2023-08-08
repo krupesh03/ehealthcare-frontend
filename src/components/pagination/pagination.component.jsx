@@ -3,21 +3,18 @@ import './pagination.styles.css';
 import { Link } from 'react-router-dom';
 import constants from '../../constants/constants';
 
-const Pagination = ({ pages, func }) => {
+const Pagination = ({ pages, func, setperPage, setActivePage, perPage, activePage }) => {
     
-    const [ perPage, setperPage ] = useState(constants.ROWS_PER_PAGES[0]);
-    const [ active, setActive ] = useState(1);
-
     const handleChange = (e) => {
         setperPage(e.target.value);
-        setActive(1);
+        setActivePage(1);
         func(e.target.value, 1);
     }
 
     const handlePageChange = (e) => {
         e.preventDefault();
         const pageno = e.currentTarget.getAttribute('data-pageno');
-        setActive(pageno);
+        setActivePage(pageno);
         func(perPage, pageno);
     }
 
@@ -26,7 +23,7 @@ const Pagination = ({ pages, func }) => {
         totalPages.push({ key: i, value: i});
     }
 
-    var initialCount = Number(active) > 1 ? ( ( Number(active) - 1 ) * Number(perPage) ) + 1 : 1;
+    var initialCount = Number(activePage) > 1 ? ( ( Number(activePage) - 1 ) * Number(perPage) ) + 1 : 1;
     var endCount = Number(initialCount) + Number(perPage) - 1 ;
     if ( endCount > pages.count ) {
         endCount = pages.count;
@@ -55,7 +52,7 @@ const Pagination = ({ pages, func }) => {
                     <Link to="#" 
                         onClick={handlePageChange} 
                         data-pageno={page.value}
-                        className={ Number(active) === Number(page.value) ? 'active' : '' }
+                        className={ Number(activePage) === Number(page.value) ? 'active' : '' }
                     >
                         { page.key }
                     </Link>

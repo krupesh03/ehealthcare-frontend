@@ -15,9 +15,11 @@ const Doctors = () => {
     const [ doctors, setDoctors ] = useState([]);
     const [ msg, setMsg ] = useState(null);
     const [ searchQuery, setSearchQuery ] = useState('');
+    const [ perPage, setperPage ] = useState(constants.ROWS_PER_PAGES[0]);
+    const [ activePage, setActivePage ] = useState(1);
 
     useEffect( () => {
-        getDoctors(constants.ROWS_PER_PAGES[0], 1);
+        getDoctors(perPage, activePage);
     }, []);
 
     const getDoctors = async (perPage , page) => {
@@ -94,7 +96,7 @@ const Doctors = () => {
                 doctors.rows 
                 ?
                     doctors.rows.map( (doctor) => (
-                        <UserList key={doctor.id} userList={doctor} type={constants.userType.DOCTOR} func={getDoctors} />
+                        <UserList key={doctor.id} userList={doctor} type={constants.userType.DOCTOR} func={getDoctors} perPage={perPage} activePage={activePage}  />
                     ))
                 : 
                 (
@@ -105,7 +107,7 @@ const Doctors = () => {
             {
                 doctors.rows
                 ?
-                    (<Pagination pages={doctors} func={getDoctors} />)
+                    (<Pagination pages={doctors} func={getDoctors} setperPage={setperPage} setActivePage={setActivePage} perPage={perPage} activePage={activePage}  />)
                 :
                     ''
             }

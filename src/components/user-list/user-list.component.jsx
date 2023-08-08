@@ -10,7 +10,7 @@ import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
 import { deepOrange, deepPurple, blueGrey } from '@mui/material/colors';
 import constants from '../../constants/constants';
 
-const UserList = ({ userList, type, func }) => { 
+const UserList = ({ userList, type, func, perPage, activePage }) => { 
     const [ cuser ] = useContext(UserContext);
 
     if ( type === constants.userType.DOCTOR ) {
@@ -35,7 +35,7 @@ const UserList = ({ userList, type, func }) => {
         .then( res => {
             if( res.data.status ) { 
                 alert(res.data.message);
-                func(constants.ROWS_PER_PAGES[0], 1);
+                func(perPage, activePage);
             }
         })
         .catch( err => {
@@ -56,7 +56,7 @@ const UserList = ({ userList, type, func }) => {
         .then( res => {
             if( res.data.status ) { 
                 alert(res.data.message);
-                func(constants.ROWS_PER_PAGES[0], 1);
+                func(perPage, activePage);
             }
         })
         .catch( err => {

@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     const yearOptions = [{ key: 2019, value : 2019 }, { key: 2020, value : 2020 }, { key: 2021, value : 2021 }, { key: 2022, value : 2022 }, { key: 2023, value : 2023 }, { key: 2024, value : 2024 },{ key: 2025, value : 2025 }, { key: 2026, value : 2026 }];
 
-    const monthOptions = [{ key: 1, value : 1 }, { key: 2, value : 2 }, { key: 3, value : 3 }, { key: 4, value : 4 }, { key: 5, value : 5 }, { key: 6, value : 6 }, { key: 7, value : 7 }, { key: 8, value : 8 }, { key: 9, value : 9 }, { key: 10, value : 10 }, { key: 11, value : 11 }, { key: 12, value : 12 }];
+    const monthOptions = [{ key: 1, value : "January" }, { key: 2, value : "February" }, { key: 3, value : "March" }, { key: 4, value : "April" }, { key: 5, value : "May" }, { key: 6, value : "June" }, { key: 7, value : "July" }, { key: 8, value : "August" }, { key: 9, value : "September" }, { key: 10, value : "October" }, { key: 11, value : "November" }, { key: 12, value : "December" }];
 
     useEffect( () => {
         getDashboardData(year, month);
@@ -58,16 +58,6 @@ const Dashboard = () => {
             <div className='row g-3'>
                 <div className='col-sm-6'>
                     <SelectField className='form-control'
-                                id='year'
-                                label='Year'
-                                value={year}
-                                onChange={handleChange}
-                                name='year'
-                                options={yearOptions}
-                        />
-                </div>
-                <div className='col-sm-6'>
-                    <SelectField className='form-control'
                             id='month'
                             label='Month'
                             value={month}
@@ -76,30 +66,173 @@ const Dashboard = () => {
                             options={monthOptions}
                     />
                 </div>
+                <div className='col-sm-6'>
+                    <SelectField className='form-control'
+                                id='year'
+                                label='Year'
+                                value={year}
+                                onChange={handleChange}
+                                name='year'
+                                options={yearOptions}
+                        />
+                </div>
             </div>
 
-            <table border="1">
-                <tr>
-                    <th colSpan="2">ACTIVE USERS</th>
-                </tr>
-                <tr>
-                    <th>TYPE</th>
-                    <th>COUNT</th>
-                </tr>
-                <tbody>
-                {
-                    data.active_users ?
-                        data.active_users.map( (auser, key) => (
-                            <tr key={key}>
-                                <td>{ Object.keys(constants.userType).find(key => constants.userType[key] === auser.user_type) }</td>
-                                <td>{ auser.user_count }</td>
-                            </tr>
-                        ))
-                    :
-                    <tr><td colSpan="2">No data</td></tr>
-                }
-                </tbody>
-            </table>
+            <br />
+
+            <div className='row g-3'>
+                <div className='col-sm-4'>
+                    <table>
+                        <tr>
+                            <th colSpan="2">Active Users</th>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <th>Count</th>
+                        </tr>
+                        <tbody>
+                        {
+                            data.active_users ?
+                                data.active_users.map( (auser, key) => (
+                                    <tr key={key}>
+                                        <td>{ Object.keys(constants.userType).find(key => constants.userType[key] === auser.user_type) }</td>
+                                        <td>{ auser.user_count }</td>
+                                    </tr>
+                                ))
+                            :
+                            <tr><td colSpan="2">No Data</td></tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='col-sm-4'>
+                    <table>
+                        <tr>
+                            <th colSpan="2">De-active Users</th>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <th>Count</th>
+                        </tr>
+                        <tbody>
+                            {
+                                data.deactive_users ? 
+                                    data.deactive_users.map( (duser, key) => (
+                                        <tr key={key}>
+                                        <td>{ Object.keys(constants.userType).find(key => constants.userType[key] === duser.user_type) }</td>
+                                        <td>{ duser.user_count }</td>
+                                    </tr>
+                                    ))
+                                :
+                                <tr><td colSpan="2">No Data</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='col-sm-4'>
+                    <table>
+                        <tr>
+                            <th colSpan="2">Total Users</th>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <th>Count</th>
+                        </tr>
+                        <tbody>
+                            {
+                                data.total_users ? 
+                                    data.total_users.map( (tuser, key) => (
+                                        <tr key={key}>
+                                        <td>{ Object.keys(constants.userType).find(key => constants.userType[key] === tuser.user_type) }</td>
+                                        <td>{ tuser.user_count }</td>
+                                    </tr>
+                                    ))
+                                :
+                                <tr><td colSpan="2">No Data</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='col-sm-12'>
+                    <table>
+                        <tr>
+                            <th colSpan="3">Gender Wise Data</th>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <th>Gender</th>
+                            <th>Count</th>
+                        </tr>
+                        <tbody>
+                            {
+                                data.gender_data ? 
+                                    data.gender_data.map( (guser, key) => (
+                                        <tr key={key}>
+                                        <td>{ Object.keys(constants.userType).find(key => constants.userType[key] === guser.user_type) }</td>
+                                        <td>{ guser.gender === "M" ? "Male" : guser.gender === "F" ? "Female" : "Others" }</td>
+                                        <td>{ guser.user_count }</td>
+                                    </tr>
+                                    ))
+                                :
+                                <tr><td colSpan="2">No Data</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='col-sm-6'>
+                    <table>
+                        <tr>
+                            <th colSpan="2">Doctor Category Data</th>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <th>Count</th>
+                        </tr>
+                        <tbody>
+                            {
+                                data.category_data ? 
+                                    data.category_data.map( (cat, key) => (
+                                        <tr key={key}>
+                                        <td>{ cat.value }</td>
+                                        <td>{ cat.doc_cnt }</td>
+                                    </tr>
+                                    ))
+                                :
+                                <tr><td colSpan="2">No Data</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='col-sm-6'>
+                    <table>
+                        <tr>
+                            <th colSpan="2">Doctor Qualification Data</th>
+                        </tr>
+                        <tr>
+                            <th>Qualification</th>
+                            <th>Count</th>
+                        </tr>
+                        <tbody>
+                            {
+                                data.qualification_data ? 
+                                    data.qualification_data.map( (qual, key) => (
+                                        <tr key={key}>
+                                        <td>{ qual.qualificationDetails.value }</td>
+                                        <td>{ qual.doc_cnt }</td>
+                                    </tr>
+                                    ))
+                                :
+                                <tr><td colSpan="2">No Data</td></tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 }
